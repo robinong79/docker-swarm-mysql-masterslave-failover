@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+    
+    mysql01:
+        image: voogd/mysql_repl:5.7
+        ports:
+            - "3307:3306"
+        networks:
+            - mysqlcluster
+        environment:
+            - MYSQL_ROOT_PASSWORD=<INSERT_ROOT_PASSWORD>
+            - SERVER_ID=1
+            - BIND_ADDRESS=0.0.0.0
+        volumes:
+            - /var/dockerdata/mysqlcluster/mysql01/lib:/var/lib/mysql
+            - /var/dockerdata/mysqlcluster/mysql01/conf.d:/etc/mysql/conf.d
+            - /var/dockerdata/mysqlcluster/mysql01/initdb.d:/docker-entrypoint-initdb.d
+            - /var/dockerdata/mysqlcluster/mysql01/log:/var/log/mysql
+        deploy:
+            mode: replicated
+            replicas: 1
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: none
+                max_attempts: 5
+            placement:
+                constraints: [node.role == manager]
+
+networks:
+    mysqlcluster:
+        external: true
+

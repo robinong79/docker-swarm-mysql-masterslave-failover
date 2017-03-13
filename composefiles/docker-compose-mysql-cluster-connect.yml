@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+   
+    wso2-mysqlfailover:
+        image: voogd/mysqlfailover:1.6.4
+        networks:
+            - mysqlcluster
+        environment:
+            - MYSQL_ROOT_PASSWORD=<INSERT_ROOT_PASSWORD>
+            - MASTER=mysql01
+        deploy:
+            mode: replicated
+            replicas: 1
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: none
+                max_attempts: 5
+
+    wso2-mysqlrouter:
+        image: voogd/mysqlrouter:2.0.4
+        ports:
+            - "3306:3306"            
+        networks:
+            - mysqlcluster
+        environment:
+            - MLOGGER_LEVEL=ERROR
+            - MYSQLROUTER_BINDPORT=3306
+            - DESTINATIONS=mysql01:3306,mysql02:3306
+        volumes:
+            - /var/dockerdata/mysqlcluster/mysqlrouter/log:/var/log/mysqlrouter
+        deploy:
+            mode: replicated
+            replicas: 2
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: none
+                max_attempts: 5
+
+networks:
+    mysqlcluster:
+        external: true
+
