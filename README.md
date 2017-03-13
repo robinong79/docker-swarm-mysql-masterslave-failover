@@ -53,10 +53,10 @@ These directories will me used for connecting volumes to to services/containers.
 |  | /var/dockerdata/mysqlcluster/mysql01/initdb.d | Directory with sql initialisation files for fresh DB|
 |  | /var/dockerdata/mysqlcluster/mysql01/lib | Data storage for MySQL instance|
 |  | /var/dockerdata/mysqlcluster/mysql01/log | Directory where bin-log files for replication will be stored |
-| mysql02 (Slave) | /var/dockerdata/mysqlcluster/mysql01/conf.d | Directory for storing configuration files|
-|  | /var/dockerdata/mysqlcluster/mysql01/initdb.d | Directory with sql initialisation files for fresh DB|
-|  | /var/dockerdata/mysqlcluster/mysql01/lib | Data storage for MySQL instance|
-|  | /var/dockerdata/mysqlcluster/mysql01/log | Directory where bin-log files for replication will be stored |
+| mysql02 (Slave) | /var/dockerdata/mysqlcluster/mysql02/conf.d | Directory for storing configuration files|
+|  | /var/dockerdata/mysqlcluster/mysql02/initdb.d | Directory with sql initialisation files for fresh DB|
+|  | /var/dockerdata/mysqlcluster/mysql02/lib | Data storage for MySQL instance|
+|  | /var/dockerdata/mysqlcluster/mysql02/log | Directory where bin-log files for replication will be stored |
 | mysqlrouter | /var/dockerdata/mysqlcluster/mysqlrouter/log | Directory where log will be written|
 
 #### Docker
