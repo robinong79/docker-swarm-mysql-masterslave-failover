@@ -3,7 +3,7 @@ version: "3"
 services:
    
     wso2-mysqlfailover:
-        image: voogd/mysqlfailover:1.6.4
+        image: robinong79/mysqlfailover:1.6.4
         networks:
             - mysqlcluster
         environment:
@@ -20,7 +20,7 @@ services:
                 max_attempts: 5
 
     wso2-mysqlrouter:
-        image: voogd/mysqlrouter:2.0.4
+        image: robinong79/mysqlrouter:2.0.4
         ports:
             - "3306:3306"            
         networks:
