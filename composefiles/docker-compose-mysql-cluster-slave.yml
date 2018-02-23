@@ -3,7 +3,7 @@ version: "3"
 services:
     
     mysql02:
-        image: voogd/mysql_repl:5.7    
+        image: robinong79/mysql_repl:5.7 
         ports:
             - "3308:3306"
         networks:
